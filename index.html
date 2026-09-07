@@ -24,7 +24,10 @@
             changeCount() {
                 this.count++;
             }
-        }
+        },
+        mounted() {   // хук жизненного цикла, который срабатывает после отрисовки DOM
+            console.log('Component mounted. Count is ' + this.count)
+        },
     }).mount('#app')
 </script>
 </body>

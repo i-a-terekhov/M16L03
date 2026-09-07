@@ -6,16 +6,17 @@
 </head>
 <body>
 <div id="app">
-    <p>Count is {{count}}</p>
-    <button @click="changeCount">Click me</button>
+    <App/>
 </div>
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-    const { createApp } = Vue
+    const { createApp } = Vue;
 
-    createApp({
-        data() {  // если свойства указаны в методе data, то vue сам отслеживает их изменения
+    const app = createApp();
+
+    app.component('App', {
+        data() {
             return {
                 count: 0
             }
@@ -25,10 +26,16 @@
                 this.count++;
             }
         },
-        mounted() {   // хук жизненного цикла, который срабатывает после отрисовки DOM
+        mounted() {
             console.log('Component mounted. Count is ' + this.count)
         },
-    }).mount('#app')
+        template: `
+          <p>Count is {{ count }}</p>
+          <button @click="changeCount">Click me</button>
+        `
+    });
+
+    app.mount('#app');
 </script>
 </body>
 </html>

@@ -1,16 +1,21 @@
+const { ref, onMounted } = Vue;
+
 const Count = {
-    data() {
+    setup() {
+        const count = ref(3);
+
+        function changeCount() {
+            count.value++;
+        }
+
+        onMounted(() => {
+            console.log('Component mounted. Count is ' + count.value);
+        });
+
         return {
-            count: 0
-        }
-    },
-    methods: {
-        changeCount() {
-            this.count++;
-        }
-    },
-    mounted() {
-        console.log('Component mounted. Count is ' + this.count)
+            count,
+            changeCount,
+        };
     },
     template: `
           <p>Count is {{ count }}</p>

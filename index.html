@@ -5,21 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-<div id="app">{{ message }}
-
-    <p>{{count}}</p>
+<div id="app">
+    <p>Count is {{count}}</p>
+    <button @click="changeCount">Click me</button>
 </div>
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-    const { createApp, ref } = Vue
+    const { createApp } = Vue
 
     createApp({
-        setup() {
-            const message = ref('Hello vue!');
-            const count = 0;
+        data() {  // если свойства указаны в методе data, то vue сам отслеживает их изменения
             return {
-                message, count
+                count: 0
+            }
+        },
+        methods: {
+            changeCount() {
+                this.count++;
             }
         }
     }).mount('#app')
